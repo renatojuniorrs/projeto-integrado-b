@@ -1,4 +1,6 @@
-// Test
-//Test2
-//test3
-//teste4 teste 98
+#include <stdio.h>
+
+int main()
+{
+  printf("HELLO WORLD");
+}

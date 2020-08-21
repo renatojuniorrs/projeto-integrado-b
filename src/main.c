@@ -1,9 +1,29 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <locale.h>
+#include <conio.h>
+
 int main() {
     /*
         Parte 1 - Ler variáveis de um arquivo
+        - Ler arquivo
     */
 
+    // Essa parte sai - inicio
+
+    float matriz[3][4] =  {
+        {
+            0,3,2,28
+        },
+        {
+            4,0,2,24
+        },
+        {
+            2,3,0,16
+        },
+    };
+
+    // Essa parte sai - fim
 
     /*
         Parte 2 - Montar uma matriz a partir do arquivo

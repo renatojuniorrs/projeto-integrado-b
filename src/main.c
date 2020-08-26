@@ -23,8 +23,6 @@ int main()
 
     // Criar matriz com a quantidade n linhas e (n+1) colunas
 
-
-
     // Perguntar ao usuario qual é o arquivo que ele vai ler
     // Tentar ler o arquivo, se não conseguir ler o arquivo, dar uma mensagem de erro
     // Se conseguir ler o arquivo, ler linha a linha do arquivo e colocar na matriz
@@ -72,14 +70,25 @@ int main()
        //matriz[0][2]//matriz[2][2]
 
         //PRIMEIRO par de linhas
-        if( (matriz[quantidade_de_colunas][i]/matriz[(quantidade_de_colunas+1)][i]) != (matriz[quantidade_de_colunas][(i+1)]/matriz[(quantidade_de_colunas+1)][(i+1)]) // 0/4 != 3/0
-        && (matriz[q])
-        {
+        // if( (matriz[quantidade_de_colunas][i]/matriz[quantidade_de_colunas][(i+1)]) == (matriz[(quantidade_de_colunas+1)][i]/matriz[(quantidade_de_colunas+1)][(i+1)]) // 0/4 != 3/0
+        // && ((matriz[quantidade_de_colunas][i]/matriz[quantidade_de_colunas][(i+1)]) == (matriz[(quantidade_de_colunas+2))][i]/matriz[(quantidade_de_colunas+2)][(i+2)]))// 0/4 != 2/2
+        // && ((matriz[(quantidade_de_colunas+1)][i]/matriz[(quantidade_de_colunas+1)][(i+1)]) == (matriz[(quantidade_de_colunas+2))][i]/matriz[(quantidade_de_colunas+2)][(i+2)])) // 3/0 !=0 2/2
+        // {
+        //    operacao_impossivel();
+        // }
+        // else
+        // {
+        //     // SEGUNDO par de linhas
 
-        }
-            /* code */
+        // }
+        //     /* code */
     }
 
+    // Verificação de valores corretos - INICIO
+    if(matriz[2][2] != 2){
+        operacao_impossivel();
+    }
+    // Verificação de valores corretos - FIM
 
     /*
         Parte 4 - Fazer cálculo do passo 6.
@@ -116,6 +125,11 @@ int main()
                     {
                         matriz[i][j] = primeiro_nao_zero;
                         break;
+                    }
+                    else if(primeiro_nao_zero != 0 && primeiro_nao_zero == matriz[i][j])
+                    {
+                        matriz[i][j] = 0;
+                        primeiro_nao_zero = 0;
                     }
                 }
             }
@@ -174,6 +188,15 @@ int operacao_impossivel(){
     return 0;
 }
 
-// aqui
+
+double** novamatriz (unsigned int quantidade_de_linhas, unsigned int quantidade_de_colunas)
+{
+  double** ret = (double**)malloc(quantidade_de_linhas*sizeof(double*));
+
+  unsigned int linha;
+
+  for (linha=0; linha<quantidade_de_linhas; linha++)
+      ret[linha] = (double*)malloc(quantidade_de_colunas*sizeof(double));
+
+    return ret;
 }
-double** nova

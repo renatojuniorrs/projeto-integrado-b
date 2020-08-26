@@ -8,7 +8,10 @@ int main() {
         Parte 1 - Ler variáveis de um arquivo
         - Ler arquivo
     */
-
+    FILE *file;
+    file = fopen ("ProjetoIntB.txt","w");
+    fprint(file,"");
+    // AQUI
     // Essa parte sai - inicio
 
     float matriz[3][4] =  {
@@ -28,6 +31,7 @@ int main() {
     /*
         Parte 2 - Montar uma matriz a partir do arquivo
     */
+    
 
 
     /*

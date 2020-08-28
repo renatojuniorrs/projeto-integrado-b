@@ -61,10 +61,40 @@ int main()
     */
     int quantidade_de_colunas = tamanho_matriz-1;
     int quantidade_de_linhas = tamanho_matriz; // Não esquecer de subtrair
-    int cont = 0;
+    int cont = 0, c;
+    float divisao_linha, incremento_linha;
 
+    // Ver se a divisão das linhas não seja igual para continuar o cálculo
     for (int i = 0; i < quantidade_de_linhas; i++)
     {
+     for(c = 0; c < quantidade_de_linhas; c++)
+     {
+       for(j = 0; j <= quantidade_de_linhas; j++)
+       {
+         if( i != c && c > i)
+         {
+           if(j == 0)
+           {
+             divisao_linha = matriz[i][j] / matriz[c][j];
+             incremento_linha = divisao_linha;
+           }
+           incremento_linha = matriz[i][j] / matriz[c][j];
+           if(divisao_linha == incremento_linha)
+           {
+             cont++;
+           }
+         }
+       }
+       if(cont == quantidade_de_linhas + 1)
+       {
+         operacao_impossivel();
+       }
+       else
+       {
+         count = 0;
+       }
+     }
+   }
        //matriz[0][0]/matriz[1][0]
        //matriz[0][1]/matriz[1][1]
        //matriz[0][2]//matriz[2][2]

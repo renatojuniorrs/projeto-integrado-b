@@ -22,10 +22,17 @@ int main()
     scanf("%d", &tamanho_matriz);
 
     // Criar matriz com a quantidade n linhas e (n+1) colunas
+    double** matriz = novamatriz(tamanho_matriz, (tamanho_matriz+1));
 
     // Perguntar ao usuario qual é o arquivo que ele vai ler
+    char  arquivo[300]; // String
+    printf("Qual o ?");
+    scanf("%d", &tamanho_matriz);
     // Tentar ler o arquivo, se não conseguir ler o arquivo, dar uma mensagem de erro
+
+
     // Se conseguir ler o arquivo, ler linha a linha do arquivo e colocar na matriz
+
 
     FILE *file;
     file = fopen ("ProjetoIntB.txt","w");
@@ -95,23 +102,6 @@ int main()
             }
         }
     }
-    //matriz[0][0]/matriz[1][0]
-    //matriz[0][1]/matriz[1][1]
-    //matriz[0][2]//matriz[2][2]
-
-    //PRIMEIRO par de linhas
-    // if( (matriz[quantidade_de_colunas][i]/matriz[quantidade_de_colunas][(i+1)]) == (matriz[(quantidade_de_colunas+1)][i]/matriz[(quantidade_de_colunas+1)][(i+1)]) // 0/4 != 3/0
-    // && ((matriz[quantidade_de_colunas][i]/matriz[quantidade_de_colunas][(i+1)]) == (matriz[(quantidade_de_colunas+2))][i]/matriz[(quantidade_de_colunas+2)][(i+2)]))// 0/4 != 2/2
-    // && ((matriz[(quantidade_de_colunas+1)][i]/matriz[(quantidade_de_colunas+1)][(i+1)]) == (matriz[(quantidade_de_colunas+2))][i]/matriz[(quantidade_de_colunas+2)][(i+2)])) // 3/0 !=0 2/2
-    // {
-    //    operacao_impossivel();
-    // }
-    // else
-    // {
-    //     // SEGUNDO par de linhas
-
-    // }
-    //     /* code */
 }
 
 // Verificação de valores corretos - INICIO
@@ -165,13 +155,17 @@ for (int i = 0; i < quantidade_de_linhas; i++)
         }
     }
 }
-
-
 /*
 Parte 5 - Fazer cálculo do passo 7.
 */
+int numdivisor_linha = matriz[0][0];
+float divisao1linha_linha;
 
-
+for (j = 0; j < quantidade_de_colunas; j++)
+{
+matriz[0][0] = 1;
+divisao1linha_linha = matriz[0][j] / numdivisor_linha;
+}
 /*
 Parte 6 - Fazer cálculo do passo 8.
 */

@@ -39,3 +39,17 @@ double** novamatriz (unsigned int quantidade_de_linhas, unsigned int quantidade_
 
     return ret;
 }
+
+int verificar_zeros_diagonal_principal(double** matriz, int quantidade_de_linhas)
+{
+    int resultado = 1;
+
+    for (int i = 0; i < quantidade_de_linhas; i++)
+    {
+        if(matriz[i][i] == 0.0)
+        {
+            resultado = 0;
+        }
+    }
+    return resultado;
+}

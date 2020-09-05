@@ -9,6 +9,7 @@
 int main()
 {
     setlocale(LC_ALL,"portuguese");
+     system("COLOR 1F");
     /*
     Parte 1 - Ler variáveis de um arquivo
     - Ler arquivo
@@ -23,10 +24,14 @@ int main()
     FILE *fp;
     unsigned int tamanho_matriz;
     char nome_arquivo[1024], line[1024];
-    printf("Digite o nome do arquivo que deseja ler: \n");
+    printf("Digite o nome do arquivo que deseja ler. \n - Ou digite 0 para selecionar o arquivo padrao. \n>> ");
     scanf("%s", &nome_arquivo);
 
     system("cls");
+
+    if(nome_arquivo[0] == '0'){
+        strcpy(nome_arquivo, "../files/ProjetoIntB.txt");
+    }
 
     printf("-- Estamos tentando abrir o arquivo: %s\n", nome_arquivo);
     fp = fopen(nome_arquivo, "rb");
@@ -93,79 +98,66 @@ int main()
     Parte 4 - Fazer cálculo do passo 6.
     */
     // Não pode ter 0 na diagonal principal
-
-    double primeiro_nao_zero;
-
-    for (int i = 0; i < quantidade_de_linhas; i++)
-    {
-        if(matriz[i][i] == 0.0)
-        {
-            // Pegar primeiro não zero da linha
-            primeiro_nao_zero = 0.0;
-            for (int j = 0; j < quantidade_de_linhas; j++)
-            {
-                if(matriz[i][j] != 0.0)
-                {
-                    primeiro_nao_zero = matriz[i][j];
-                    break;
-                }
-            }
-
-            printf("--->> %f\n", primeiro_nao_zero);
-            system("pause");
-            
-            if(primeiro_nao_zero == 0.0)
-            {
-                operacao_impossivel();
-            }
-            else
-            {
-                // Se tiver um número válido, vamos trocar
-                for (int j = 0; j < quantidade_de_linhas; j++)
-                {
-                    if(i == j)
-                    {
-                        matriz[i][j] = primeiro_nao_zero;
-                        break;
+    double temp = 0;
+    if(verificar_zeros_diagonal_principal(matriz, tamanho_matriz) == 0){
+        for (int i = 0; i < tamanho_matriz; i++) {
+            if (matriz[i][i] == 0.00) {
+                if((i+1) < (tamanho_matriz-1)){
+                    for (int k = 0; k < (tamanho_matriz+1); k++) {
+                        temp = matriz[i][k];
+                        matriz[i][k] = matriz[(i+1)][k];
+                        matriz[(i+1)][k] = temp;
                     }
-                    else if(primeiro_nao_zero != 0.0 && primeiro_nao_zero == matriz[i][j])
-                    {
-                        matriz[i][j] = 0.0;
-                        primeiro_nao_zero = 0.0;
+                }else if((i-1) > 0){
+                    for (int k = 0; k < (tamanho_matriz+1); k++) {
+                        temp = matriz[i][k];
+                        matriz[i][k] = matriz[(i-1)][k];
+                        matriz[(i-1)][k] = temp;
                     }
+
                 }
             }
         }
     }
 
+    if(verificar_zeros_diagonal_principal(matriz, tamanho_matriz) == 0){
+        operacao_impossivel();
+    }
+
+    /*
+    Parte 5 - Fazer cálculo do passo 7.
+    */
+
+    double primeiro_elemento =  matriz[0][0];
+    for (int j = 0; j < (tamanho_matriz+1); j++)
+    {
+        matriz[0][j] = matriz[0][j] / primeiro_elemento;
+    }
+
+    //TODO: ATENÇÃO -- Daqui em diante está errado ou não foi testado
+
+    /*
+    Parte 6 - Fazer cálculo do passo 8.
+    */
+    double numeroparazerar_coluna, zerar_coluna;
+
+    for(int i = 1; i < quantidade_de_linhas; i++)
+    {
+        numeroparazerar_coluna = - matriz[i][0];
+        zerar_coluna = matriz[i][0] * numeroparazerar_coluna;
+    }
+
+    // ATENÇÃO: ESTE TRECHO DO CÓDIGO SERVE PARA TESTAR SE ESTÁ CORRETO OS VALORES DA MATRIZ
     // Verificação de valores corretos - INICIO
+    printf("\n\n----- Debug \n");
     for (int a = 0; a < tamanho_matriz; a++) {
         for (int b = 0; b < (tamanho_matriz+1); b++) {
-            printf(" [%d][%d] = %f\n", a, b, matriz[a][b]);
+            printf(" [%d][%d] = %.2f\n", a, b, matriz[a][b]);
         }
     }
     // Verificação de valores corretos - FIM
 
-    // /*
-    // Parte 5 - Fazer cálculo do passo 7.
-    // */
-    // int numdivisor_linha = matriz[0][0];
-    // float divisao1linha_linha;
-    //
-    // for (j = 0; j < quantidade_de_colunas; j++)
-    // {
-    //     matriz[0][0] = 1;
-    //     divisao1linha_linha = matriz[0][j] / numdivisor_linha;
-    // }
-    // /*
-    // Parte 6 - Fazer cálculo do passo 8.
-    // */
-    // float numeroparazerar_coluna = - matriz[i][0], zerar_coluna;
-    //
-    // for(i = 1; i < quantidade_de_linhas; i++)
-    // {
-    //     zerar_coluna = matriz[i][0] * numeroparazerar_coluna;
-    // }
+
     // /*
     // Parte 7 - Fazer cálculo do passo 9.
     //*/

@@ -134,19 +134,64 @@ int main()
         matriz[0][j] = matriz[0][j] / primeiro_elemento;
     }
 
-    //TODO: ATENÇÃO -- Daqui em diante está errado ou não foi testado
-
     /*
     Parte 6 - Fazer cálculo do passo 8.
     */
-    double numeroparazerar_coluna, zerar_coluna;
+   double segundo_elemento = (-matriz[1][0]), auxiliarsoma;
+   for(int j = 0; j < (tamanho_matriz+1); j++)
+   {
+         // pegar os elementos da primeira linha e multiplicar com o elemento da segunda linha/primeira coluna
+         auxiliarsoma = matriz[0][j] * segundo_elemento;
 
-    for(int i = 1; i < quantidade_de_linhas; i++)
+        // pegar a "multiplicação imaginaria" e somar com os elementos REAIS da segunda lina
+            matriz[1][j] = matriz[1][j] + auxiliarsoma;
+   }
+
+    // Verificação de valores corretos - FIM
+
+     /*
+     Parte 7 - Fazer cálculo do passo 9.
+    */
+    double segundadiagonalprincipal = matriz[1][1];
+    for(int j = 0; j < (tamanho_matriz+1); j++)
     {
-        numeroparazerar_coluna = - matriz[i][0];
-        zerar_coluna = matriz[i][0] * numeroparazerar_coluna;
+      matriz[1][j] = matriz[1][j] / segundadiagonalprincipal;
+    }
+   /*
+    // Parte 7 - Fazer cálculo do passo 10.
+     */
+  double numeroauxiliar = (-matriz[2][1]), multiplicacaoauxiliar;
+  for(int j = 0; j < (tamanho_matriz+1); j++)
+  {
+    multiplicacaoauxiliar = matriz[1][j] * numeroauxiliar;
+    matriz[2][j] = matriz[2][j] + multiplicacaoauxiliar;
+
+  }
+    // Parte 8 - Fazer cálculo do passo 11.
+
+    double terceiradiagonalprincipal = matriz[2][2];
+    for (int j = 0; j < (tamanho_matriz+1); j++)
+    {
+     matriz[2][j] = matriz[2][j] / terceiradiagonalprincipal;
+    }
+    //TODO: ATENÇÃO -- Daqui em diante está errado ou não foi testado
+    // Parte 9 - Fazer cálculo do passo 12.
+    double segundamulticao, segundoauxiliar = (-matriz[0][2]);
+    for(int j = 0; j < (tamanho_matriz+1); j++)
+    {
+      segundamulticao = matriz[2][j] * segundoauxiliar;
+      matriz[0][j] = matriz[0][j] + segundamulticao;
     }
 
+     /*
+    // Parte 10 - Fazer cálculo do passo 13.
+    // */
+    double terceiramulticao, terceiroauxiliar = (-matriz[1][2]);
+    for(int j = 0; j < (tamanho_matriz+1); j++)
+    {
+      terceiramulticao = matriz[2][j] * terceiroauxiliar;
+      matriz[1][j] = matriz[1][j] + terceiramulticao;
+    }
     // ATENÇÃO: ESTE TRECHO DO CÓDIGO SERVE PARA TESTAR SE ESTÁ CORRETO OS VALORES DA MATRIZ
     // Verificação de valores corretos - INICIO
     printf("\n\n----- Debug \n");
@@ -155,118 +200,13 @@ int main()
             printf(" [%d][%d] = %.2f\n", a, b, matriz[a][b]);
         }
     }
-    // Verificação de valores corretos - FIM
-
-
-    // /*
-    // Parte 7 - Fazer cálculo do passo 9.
-    //*/
-    // // Nao pode ter 0 na diagonal principal
-    //
-    // int segundo_nao_zero;
-    //
-    // for (int i=0; i < quantidade_de_linhas; i++);
-    // {
-    //      if(matriz[i][i] == 0);
-    //      {
-    //       segundo_nao_zero = 0;
-    //       //Pegar segundo nao zero da linha
-    //       for (int j = 0; j < quantidade_de_linhas; j++);
-    //       {
-    //           if(matriz[i][j] != 0);
-    //           {
-    //                 segundo_nao_zero = matriz[i][j];
-    //                 break;
-    //         }
-    //     }
-    //
-    //        if(segundo_nao_zero == 0);
-    //        {
-    //           operacao_impossivel();
-    //        }
-    //        else
-    //        {
-    //             //Se tiver um numero valido vamos trocar
-    //            for (int j= 0; j < quantidade_de_linhas; j++);
-    //            {
-    //                 if(i == j)
-    //                 {
-    //                      matriz[i][j] = segundo_nao_zero;
-    //                      break
-    //                 }
-    //                 else if(segundo_nao_zero != 0 && segundo_nao_zero == matriz[i][j])
-    //                 {
-    //                    matriz [i][j] = 0;
-    //                    segundo_nao_zero = 0;
-    //                 }
-    //             }
-    //         }
-    //     }
-    // }
-    // /*
-    // Parte 7 - Fazer cálculo do passo 10.
-    // */
-    // // Não pode ter 0 na diagonal principal
-    //
-    // int segundo_nao_zero;
-    //
-    // for(int i=0; i < quantidade_de_colunas; i++);
-    // {
-    //       if(matriz[i][i] == 0);
-    //       {
-    //       segundo_nao_zero = 0;
-    //       //Pegar segundo nao zero da linha
-    //       for (int j = 0; j < quantidade_de_colunas; j++);
-    //       {
-    //           if (matriz[i][j] != 0);
-    //           {
-    //                  segundo_nao_zero = matriz[i][j];
-    //                  break;
-    //          }
-    //       }
-    //
-    //        if(segundo_nao_zero == 0);
-    //        {
-    //            operacao_impossivel();
-    //        }
-    //        else
-    //        {
-    //              //Se tiver um numero valido vamos trocar
-    //              for (int j = 0; j < quantidade_de_colunas; j++);
-    //              {
-    //                   if(i == j)
-    //                   {
-    //                         matriz[i][j] =segundo_nao_zero;
-    //                         break
-    //                   }
-    //                   else if(segundo_nao_zero != 0 && segundo_nao_zero == matriz[i][j]);
-    //                   {
-    //                      matriz [i][j] = 0;
-    //                      segundo_nao_zero = 0;
-    //                   }
-    //              }
-    //          }
-    //      }
-    //  }
-    // /*
-    // Parte 8 - Fazer cálculo do passo 11.
-    // */
-    //
-    //
-    // /*
-    // Parte 9 - Fazer cálculo do passo 12.
-    // */
-    //
-    //
-    // /*
-    // Parte 10 - Fazer cálculo do passo 13.
-    // */
-    //
-    //
+    system("cls");
     // /*
     // Parte 11 -Exibir o resultado - passo 14.
-    // */
-
-
+   printf("\n\n----- Exibição dos Resultados \n");
+   for(int i = 0; i < tamanho_matriz; i++)
+   {
+     printf("\n\n Variável %d = %.2f", i, matriz[i][3]);
+   }
     return 0;
 }

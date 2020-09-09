@@ -28,7 +28,7 @@ int main()
     scanf("%s", &nome_arquivo);
 
     system("cls");
-    
+
     if(nome_arquivo[0] == '0'){
         strcpy(nome_arquivo, "../files/ProjetoIntB.txt");
     }

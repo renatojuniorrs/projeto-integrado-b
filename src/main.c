@@ -8,8 +8,8 @@
 
 int main()
 {
-    setlocale(LC_ALL,"portuguese");
-     system("COLOR 1F");
+    setlocale( LC_ALL, "" );
+    system("COLOR F0");
     /*
     Parte 1 - Ler variáveis de um arquivo
     - Ler arquivo
@@ -28,7 +28,7 @@ int main()
     scanf("%s", &nome_arquivo);
 
     system("cls");
-
+    
     if(nome_arquivo[0] == '0'){
         strcpy(nome_arquivo, "../files/ProjetoIntB.txt");
     }
@@ -137,76 +137,85 @@ int main()
     /*
     Parte 6 - Fazer cálculo do passo 8.
     */
-   double segundo_elemento = (-matriz[1][0]), auxiliarsoma;
-   for(int j = 0; j < (tamanho_matriz+1); j++)
-   {
-         // pegar os elementos da primeira linha e multiplicar com o elemento da segunda linha/primeira coluna
-         auxiliarsoma = matriz[0][j] * segundo_elemento;
+    double segundo_elemento = (-matriz[1][0]), auxiliarsoma;
+    for(int j = 0; j < (tamanho_matriz+1); j++)
+    {
+        // pegar os elementos da primeira linha e multiplicar com o elemento da segunda linha/primeira coluna
+        auxiliarsoma = matriz[0][j] * segundo_elemento;
 
         // pegar a "multiplicação imaginaria" e somar com os elementos REAIS da segunda lina
-            matriz[1][j] = matriz[1][j] + auxiliarsoma;
-   }
+        matriz[1][j] = matriz[1][j] + auxiliarsoma;
+    }
+
 
     // Verificação de valores corretos - FIM
 
-     /*
-     Parte 7 - Fazer cálculo do passo 9.
+    /*
+    Parte 7 - Fazer cálculo do passo 9.
     */
     double segundadiagonalprincipal = matriz[1][1];
     for(int j = 0; j < (tamanho_matriz+1); j++)
     {
-      matriz[1][j] = matriz[1][j] / segundadiagonalprincipal;
+        matriz[1][j] = matriz[1][j] / segundadiagonalprincipal;
     }
-   /*
+
+
+    /*
     // Parte 7 - Fazer cálculo do passo 10.
-     */
-  double numeroauxiliar = (-matriz[2][1]), multiplicacaoauxiliar;
-  for(int j = 0; j < (tamanho_matriz+1); j++)
-  {
-    multiplicacaoauxiliar = matriz[1][j] * numeroauxiliar;
-    matriz[2][j] = matriz[2][j] + multiplicacaoauxiliar;
-
-  }
-    // Parte 8 - Fazer cálculo do passo 11.
-
-    double terceiradiagonalprincipal = matriz[2][2];
-    for (int j = 0; j < (tamanho_matriz+1); j++)
+    */
+    if(tamanho_matriz > 2)
     {
-     matriz[2][j] = matriz[2][j] / terceiradiagonalprincipal;
-    }
-    //TODO: ATENÇÃO -- Daqui em diante está errado ou não foi testado
-    // Parte 9 - Fazer cálculo do passo 12.
-    double segundamulticao, segundoauxiliar = (-matriz[0][2]);
-    for(int j = 0; j < (tamanho_matriz+1); j++)
-    {
-      segundamulticao = matriz[2][j] * segundoauxiliar;
-      matriz[0][j] = matriz[0][j] + segundamulticao;
-    }
+        double numeroauxiliar = (-matriz[2][1]), multiplicacaoauxiliar;
+        for(int j = 0; j < (tamanho_matriz+1); j++)
+        {
+            multiplicacaoauxiliar = matriz[1][j] * numeroauxiliar;
+            matriz[2][j] = matriz[2][j] + multiplicacaoauxiliar;
 
-     /*
-    // Parte 10 - Fazer cálculo do passo 13.
-    // */
-    double terceiramulticao, terceiroauxiliar = (-matriz[1][2]);
-    for(int j = 0; j < (tamanho_matriz+1); j++)
-    {
-      terceiramulticao = matriz[2][j] * terceiroauxiliar;
-      matriz[1][j] = matriz[1][j] + terceiramulticao;
-    }
-    // ATENÇÃO: ESTE TRECHO DO CÓDIGO SERVE PARA TESTAR SE ESTÁ CORRETO OS VALORES DA MATRIZ
-    // Verificação de valores corretos - INICIO
-    printf("\n\n----- Debug \n");
-    for (int a = 0; a < tamanho_matriz; a++) {
-        for (int b = 0; b < (tamanho_matriz+1); b++) {
-            printf(" [%d][%d] = %.2f\n", a, b, matriz[a][b]);
         }
     }
+
+    // Parte 8 - Fazer cálculo do passo 11.
+    if(tamanho_matriz > 2)
+    {
+        double terceiradiagonalprincipal = matriz[2][2];
+        for (int j = 0; j < (tamanho_matriz+1); j++)
+        {
+            matriz[2][j] = matriz[2][j] / terceiradiagonalprincipal;
+        }
+    }
+
+
+    // Parte 9 - Fazer cálculo do passo 12.
+    if(tamanho_matriz > 2)
+    {
+        double segundamulticao, segundoauxiliar = (-matriz[0][2]);
+        for(int j = 0; j < (tamanho_matriz+1); j++)
+        {
+            segundamulticao = matriz[2][j] * segundoauxiliar;
+            matriz[0][j] = matriz[0][j] + segundamulticao;
+        }
+    }
+
+    /*
+    // Parte 10 - Fazer cálculo do passo 13.
+    // */
+    if(tamanho_matriz > 2)
+    {
+        double terceiramulticao, terceiroauxiliar = (-matriz[1][2]);
+        for(int j = 0; j < (tamanho_matriz+1); j++)
+        {
+            terceiramulticao = matriz[2][j] * terceiroauxiliar;
+            matriz[1][j] = matriz[1][j] + terceiramulticao;
+        }
+    }
+
     system("cls");
     // /*
     // Parte 11 -Exibir o resultado - passo 14.
-   printf("\n\n----- Exibição dos Resultados \n");
-   for(int i = 0; i < tamanho_matriz; i++)
-   {
-     printf("\n\n Variável %d = %.2f", i, matriz[i][3]);
-   }
+    printf("\n\n----- Resultados \n");
+    for(int i = 0; i < tamanho_matriz; i++)
+    {
+        printf("\n\n Variaveis %d = %.2f", i, matriz[i][tamanho_matriz]);
+    }
     return 0;
 }

@@ -24,7 +24,7 @@ int main()
     FILE *fp;
     unsigned int tamanho_matriz;
     char nome_arquivo[1024], line[1024];
-    printf("Digite o nome do arquivo que deseja ler. \n - Ou digite 0 para selecionar o arquivo padrao. \n>> ");
+    printf("Digite o nome do arquivo que deseja ler. \n - Ou digite 0 para selecionar o arquivo padrao. \n >> ");
     scanf("%s", &nome_arquivo);
 
     system("cls");
@@ -147,7 +147,6 @@ int main()
         matriz[1][j] = matriz[1][j] + auxiliarsoma;
     }
 
-
     // Verificação de valores corretos - FIM
 
     /*
@@ -172,7 +171,16 @@ int main()
             matriz[2][j] = matriz[2][j] + multiplicacaoauxiliar;
 
         }
+    }else{
+        double numeroauxiliar = (-matriz[0][1]), multiplicacaoauxiliar;
+        for(int j = 0; j < (tamanho_matriz+1); j++)
+        {
+            multiplicacaoauxiliar = matriz[1][j] * numeroauxiliar;
+            matriz[0][j] = matriz[0][j] + multiplicacaoauxiliar;
+
+        }
     }
+
 
     // Parte 8 - Fazer cálculo do passo 11.
     if(tamanho_matriz > 2)

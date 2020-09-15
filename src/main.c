@@ -1,3 +1,14 @@
+/*
+Repositório do Código: https://github.com/renatojuniorrs/projeto-integrado-b
+
+Integrantes
+
+Guilherme Araujo Alexandre 20133153
+Lucas Ament 20011615
+Renato Donizeti da Silva Junior 20014023
+
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <locale.h>

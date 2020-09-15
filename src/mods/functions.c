@@ -6,11 +6,6 @@ int operacao_impossivel(){
     return 0;
 }
 
-// char* limpar_string(char* st){
-//     for (i = 0; i < strlen(st); i++) {
-//         a_str[i] =
-//     }
-// }
 
 void carregaMatriz(char* nomeArq, double** mat)
 {

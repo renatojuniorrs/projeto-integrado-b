@@ -24,13 +24,17 @@ int main()
     FILE *fp;
     unsigned int tamanho_matriz;
     char nome_arquivo[1024], line[1024];
-    printf("Digite o nome do arquivo que deseja ler. \n - Ou digite 0 para selecionar o arquivo padrao. \n >> ");
+    printf("Digite o nome do arquivo que deseja ler. \n - Ou digite 1 ou 2 ou 3 para selecionar o arquivo padrao. \n >> ");
     scanf("%s", &nome_arquivo);
 
     system("cls");
 
-    if(nome_arquivo[0] == '0'){
-        strcpy(nome_arquivo, "../files/ProjetoIntB.txt");
+    if(nome_arquivo[0] == '1'){
+        strcpy(nome_arquivo, "../files/1.txt");
+    }else if(nome_arquivo[0] == '2'){
+        strcpy(nome_arquivo, "../files/2.txt");
+    }else if(nome_arquivo[0] == '3'){
+        strcpy(nome_arquivo, "../files/3.txt");
     }
 
     printf("-- Estamos tentando abrir o arquivo: %s\n", nome_arquivo);
@@ -41,7 +45,7 @@ int main()
     }
     else
     {
-        printf("-- Não conseguimos abrir o arquivo: %s :P\n", nome_arquivo);
+        printf("-- Nao conseguimos abrir o arquivo: %s :P\n", nome_arquivo);
         system("pause");
     }
     fclose(fp);
@@ -223,7 +227,9 @@ int main()
     printf("\n\n----- Resultados \n");
     for(int i = 0; i < tamanho_matriz; i++)
     {
-        printf("\n\n Variaveis %d = %.2f", i, matriz[i][tamanho_matriz]);
+        printf("\n\n Variaveis %d = %.2f", i+1, matriz[i][tamanho_matriz]);
     }
+
+    printf("\n\n");
     return 0;
 }

@@ -1,9 +1,25 @@
-int operacao_impossivel(){
-    system("cls");
-    printf("- Não é possível concluir esta operação!");
-    system("pause");
+#include <stdio.h>
+#include <stdlib.h>
+#include <locale.h>
+#include <conio.h>
+#include <string.h>
+#include <assert.h>
 
-    return 0;
+#include<iostream>
+#include <fstream>
+
+#include <string>
+#include <vector>
+#include <sstream>
+#include <utility>
+#include <iostream>
+
+using namespace std;
+
+
+int operacao_impossivel(){
+    printf("Operação Impossível!");
+    return 1;
 }
 
 
@@ -19,8 +35,11 @@ void carregaMatriz(char* nomeArq, double** mat)
     for (lin = 0; lin < qtdLins; lin++)
         for (col = 0; col < qtdCols; col++)
         {
+
             fscanf(arq, "%lf", &mat[lin][col]);
+
         }
+
 }
 
 double** novamatriz (int quantidade_de_linhas, int quantidade_de_colunas)
@@ -80,7 +99,7 @@ int ler_arquivo(char* nome_arquivo, int* tamanho_matriz)
     {
         fclose(fp);
         printf("-- Nao conseguimos abrir o arquivo: %s :P\n", nome_arquivo);
-        system("pause");
+        // system("pause");
         return 0;
     }
     if(valorAnterior == *tamanho_matriz){
@@ -119,7 +138,7 @@ int calculo_passo_5(double** matriz, int tamanho_matriz){
             }
             if(cont == quantidade_de_linhas + 1)
             {
-                operacao_impossivel();
+                return operacao_impossivel();
             }
             else
             {
@@ -154,8 +173,9 @@ int calculo_passo_6(double** matriz, int tamanho_matriz){
     }
 
     if(verificar_zeros_diagonal_principal(matriz, tamanho_matriz) == 0){
-        operacao_impossivel();
+        return operacao_impossivel();
     }
+    return 0;
 }
 
 int calculo_passo_7(double** matriz, int tamanho_matriz){
@@ -164,6 +184,7 @@ int calculo_passo_7(double** matriz, int tamanho_matriz){
     {
         matriz[0][j] = matriz[0][j] / primeiro_elemento;
     }
+    return 0;
 }
 
 int calculo_passo_8(double** matriz, int tamanho_matriz){
@@ -176,6 +197,7 @@ int calculo_passo_8(double** matriz, int tamanho_matriz){
         // pegar a "multiplicação imaginaria" e somar com os elementos REAIS da segunda lina
         matriz[1][j] = matriz[1][j] + auxiliarsoma;
     }
+    return 0;
 }
 
 int calculo_passo_9(double** matriz, int tamanho_matriz){
@@ -184,6 +206,7 @@ int calculo_passo_9(double** matriz, int tamanho_matriz){
     {
         matriz[1][j] = matriz[1][j] / segundadiagonalprincipal;
     }
+    return 0;
 }
 
 int calculo_passo_10(double** matriz, int tamanho_matriz){
@@ -205,6 +228,7 @@ int calculo_passo_10(double** matriz, int tamanho_matriz){
 
         }
     }
+    return 0;
 }
 
 int calculo_passo_11(double** matriz, int tamanho_matriz){
@@ -216,6 +240,7 @@ int calculo_passo_11(double** matriz, int tamanho_matriz){
             matriz[2][j] = matriz[2][j] / terceiradiagonalprincipal;
         }
     }
+    return 0;
 }
 
 int calculo_passo_12(double** matriz, int tamanho_matriz){
@@ -228,6 +253,7 @@ int calculo_passo_12(double** matriz, int tamanho_matriz){
             matriz[0][j] = matriz[0][j] + segundamulticao;
         }
     }
+    return 0;
 }
 
 int calculo_passo_13(double** matriz, int tamanho_matriz){
@@ -240,43 +266,78 @@ int calculo_passo_13(double** matriz, int tamanho_matriz){
             matriz[1][j] = matriz[1][j] + terceiramulticao;
         }
     }
+    return 0;
 }
 
 int resultado(double** matriz, int tamanho_matriz){
-    system("cls");
+    // system("cls");
 
     printf("\n\n----- Resultados \n");
     for(int i = 0; i < tamanho_matriz; i++)
     {
         printf("\n\n Variaveis %d = %.2f", i+1, matriz[i][tamanho_matriz]);
     }
+    return 0;
 }
 
 int calcular_gauss(double** matriz, int tamanho_matriz){
     // Parte 3 - Fazer cálculo do passo 5.
-    calculo_passo_5(matriz, tamanho_matriz);
+    int falha5 = calculo_passo_5(matriz, tamanho_matriz);
+
+    if(falha5 == 1){
+        return 1;
+    }
 
     // Fazer cálculo do passo 6.
-    calculo_passo_6(matriz, tamanho_matriz);
+    int falha6 = calculo_passo_6(matriz, tamanho_matriz);
+
+    if(falha6 == 1){
+        return 1;
+    }
 
     // Fazer cálculo do passo 7.
-    calculo_passo_7(matriz, tamanho_matriz);
+    int falha7 = calculo_passo_7(matriz, tamanho_matriz);
+
+    if(falha7 == 1){
+        return 1;
+    }
 
     // Fazer cálculo do passo 8.
-    calculo_passo_8(matriz, tamanho_matriz);
+    int falha8 = calculo_passo_8(matriz, tamanho_matriz);
+
+    if(falha8 == 1){
+        return 1;
+    }
 
     // Fazer cálculo do passo 9.
-    calculo_passo_9(matriz, tamanho_matriz);
+    int falha9 = calculo_passo_9(matriz, tamanho_matriz);
+    if(falha9 == 1){
+        return 1;
+    }
 
     // Fazer cálculo do passo 10.
-    calculo_passo_10(matriz, tamanho_matriz);
+    int falha10 = calculo_passo_10(matriz, tamanho_matriz);
+    if(falha10 == 1){
+        return 1;
+    }
 
     // Fazer cálculo do passo 11.
-    calculo_passo_11(matriz, tamanho_matriz);
+    int falha11 = calculo_passo_11(matriz, tamanho_matriz);
+    if(falha11 == 1){
+        return 1;
+    }
 
     // Fazer cálculo do passo 12.
-    calculo_passo_12(matriz, tamanho_matriz);
+    int falha12 = calculo_passo_12(matriz, tamanho_matriz);
+    if(falha12 == 1){
+        return 1;
+    }
 
     // Fazer cálculo do passo 13.
-    calculo_passo_13(matriz, tamanho_matriz);
+    int falha13 = calculo_passo_13(matriz, tamanho_matriz);
+    if(falha13 == 1){
+        return 1;
+    }
+
+    return 0;
 }
